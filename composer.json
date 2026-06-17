@@ -1,0 +1,56 @@
+{
+    "name": "digitalpassenger/wp-simple-anti-spam",
+    "description": "WordPress anti-spam plugin",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Jaime Martinez",
+            "email": "opensource@wearedigitalpassenger.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/digitalpassenger/wp-simple-anti-spam/issues",
+        "source": "https://github.com/digitalpassenger/wp-simple-anti-spam"
+    },
+    "keywords": [
+        "wordpress",
+        "plugin",
+        "anti-spam"
+    ],
+    "homepage": "https://github.com/digitalpassenger/wp-simple-anti-spam",
+    "readme": "README.md",
+    "require": {
+        "php": ">=8.3"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "pestphp/pest": "^3.0",
+        "squizlabs/php_codesniffer": "^3.13",
+        "wp-coding-standards/wpcs": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "WPSimpleAntiSpam\\": "app/"
+        }
+    },
+    "scripts": {
+        "test": [
+            "@pest",
+            "@lint"
+        ],
+        "pest": "pest",
+        "lint": "phpcs",
+        "lint:fix": "phpcbf",
+        "phpcs": "@lint",
+        "phpcbf": "@lint:fix"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "pestphp/pest-plugin": true
+        },
+        "sort-packages": true
+    }
+}

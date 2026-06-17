@@ -1,0 +1,25 @@
+<?php
+/**
+ * Plugin Name: Simple Anti Spam
+ * Description: No config, no big complicated 3rd party spam check. Just simple local, maybe not 100% (but enough) anti-spam solution :)
+ * Plugin URI: https://jaimemartinez.nl/open-source/anti-spam
+ * Author: Jaime Martinez
+ * Author URI: https://jaimemartinez.nl
+ * Props URI: Danny van Kooten > https://gist.github.com/dannyvankooten/c6b3e08e0bd4178eca6acd05df18a67a
+ *
+ * @package WPSimpleAntiSpam
+ */
+
+declare( strict_types=1 );
+
+require_once __DIR__ . '/app/Check.php';
+require_once __DIR__ . '/app/Comment.php';
+require_once __DIR__ . '/app/GravityForms.php';
+
+add_action(
+	'plugins_loaded',
+	function () {
+		new WPSimpleAntiSpam\Comment();
+		new WPSimpleAntiSpam\GravityForms();
+	}
+);

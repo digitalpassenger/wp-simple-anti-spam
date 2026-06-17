@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<ruleset name="WP Simple Anti Spam">
+	<description>WordPress Coding Standards for WP Simple Anti Spam.</description>
+
+	<file>app</file>
+	<file>tests</file>
+	<file>wp-simple-anti-spam.php</file>
+
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/.pest-cache/*</exclude-pattern>
+	<exclude-pattern>*/tests/Pest.php</exclude-pattern>
+
+	<arg value="sp"/>
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/>
+
+	<config name="minimum_supported_wp_version" value="6.7"/>
+
+	<rule ref="WordPress">
+		<exclude name="WordPress.Files.FileName"/>
+		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="wp-simple-anti-spam"/>
+			</property>
+			<property name="prefixes" type="array">
+				<element value="wp_simple_anti_spam"/>
+				<element value="WPSimpleAntiSpam"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="wp_simple_anti_spam"/>
+				<element value="WPSimpleAntiSpam"/>
+				<element value="mock_"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+
+	<rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array">
+                <element key="create_function" value="null"/>
+                <element key="each" value="null"/>
+				<element key="ray" value="null"/>
+                <element key="var_dump" value="null"/>
+				<element key="dd" value="null"/>
+				<element key="die" value="null"/>
+				<element key="sizeof" value="count"/>
+				<element key="delete" value="unset"/>
+				<element key="eval" value="null"/>
+				<element key="print" value="echo"/>
+                <element key="read_exif_data" value="exif_read_data"/>
+                <element key="__autoload" value="null"/>
+            </property>
+        </properties>
+    </rule>
+
+	<rule ref="Generic.ControlStructures.InlineControlStructure"/>
+	<rule ref="Generic.VersionControl.GitMergeConflict"/>
+
+	<rule ref="WordPress.PHP.YodaConditions">
+		<exclude-pattern>*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<exclude-pattern>*/app/*</exclude-pattern>
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+</ruleset>
