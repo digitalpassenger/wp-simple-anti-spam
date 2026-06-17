@@ -2,7 +2,7 @@
     "name": "digitalpassenger/wp-simple-anti-spam",
     "description": "WordPress anti-spam plugin",
     "type": "wordpress-plugin",
-    "license": "MIT",
+    "license": "GPL-3.0-or-later",
     "version": "1.0.0",
     "authors": [
         {
