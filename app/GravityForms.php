@@ -21,7 +21,7 @@ class GravityForms {
 			return;
 		}
 
-		add_filter( 'gform_entry_is_spam', array( $this, 'entry_spam_check' ), 10, 2 );
+		add_filter( 'gform_entry_is_spam', array( $this, 'entry_spam_check' ), 10, 3 );
 	}
 
 	/**
