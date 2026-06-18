@@ -8,7 +8,7 @@
  * Author URI: https://jaimemartinez.nl
  * License: GPL v3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * 
+ *
  * Props URI: Danny van Kooten > https://gist.github.com/dannyvankooten/c6b3e08e0bd4178eca6acd05df18a67a
  *
  * @package WPSimpleAntiSpam

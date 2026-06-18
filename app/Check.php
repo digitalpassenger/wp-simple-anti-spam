@@ -188,13 +188,13 @@ class Check {
 			return true;
 		}
 
-		// If purly the host ( domain without TLD) is digits only, then yupp, also spam
-		$domain = strtolower( parse_url( $url, PHP_URL_HOST ) );
+		// If purly the host ( domain without TLD) is digits only, then yupp, also spam.
+		$domain = strtolower( (string) wp_parse_url( $url, PHP_URL_HOST ) );
 		if ( self::is_only_digits( $domain ) ) {
 			return true;
 		}
 
-		// Especially you binance.com ;)
+		// Especially you binance.com ;).
 		foreach ( self::get_stop_words() as $stop_word ) {
 			if ( str_contains( $domain, $stop_word ) ) {
 				return true;
