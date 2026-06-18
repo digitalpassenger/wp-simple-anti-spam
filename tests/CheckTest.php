@@ -47,6 +47,31 @@ describe(
 		);
 
 		it(
+			'flags emails with a digit-only local part',
+			function ( string $email ) {
+				expect( Check::email_is_blacklisted( $email ) )->toBeTrue();
+			}
+		)->with(
+			array(
+				'1@gmail.com',
+				'123456@gmail.com',
+				'007@yahoo.com',
+			)
+		);
+
+		it(
+			'allows emails with letters in the local part',
+			function ( string $email ) {
+				expect( Check::email_is_blacklisted( $email ) )->toBeFalse();
+			}
+		)->with(
+			array(
+				'hello123@gmail.com',
+				'user1@company.com',
+			)
+		);
+
+		it(
 			'allows clean emails',
 			function ( string $email ) {
 				expect( Check::email_is_blacklisted( $email ) )->toBeFalse();

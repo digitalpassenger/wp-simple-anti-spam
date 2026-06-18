@@ -187,6 +187,12 @@ class Check {
 			return true;
 		}
 
+		// If purly the host ( domain without TLD) is digits only, then yupp, also spam
+		$domain = strtolower( parse_url( $url, PHP_URL_HOST ) );
+		if ( self::is_only_digits( $domain ) ) {
+			return true;
+		}
+
 		$blacklist = apply_filters( 'wp_simple_anti_spam/url_blacklist', array( 'bit.ly', 'bitly', 'rb.gy', 'tinyurl.com' ) );
 
 		foreach ( $blacklist as $item ) {
