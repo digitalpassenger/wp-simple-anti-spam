@@ -114,6 +114,7 @@ class Check {
 				'/^seo.*@/',
 				'/^marketing.*@/',
 				'/^sales.*@/',
+				'/^\d+@/', // 57370088@outlook.com
 			)
 		);
 

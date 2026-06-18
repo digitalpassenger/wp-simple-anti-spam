@@ -56,6 +56,7 @@ describe(
 				'1@gmail.com',
 				'123456@gmail.com',
 				'007@yahoo.com',
+				'57370088@outlook.com',
 			)
 		);
 
