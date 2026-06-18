@@ -193,6 +193,13 @@ class Check {
 			return true;
 		}
 
+		// Especially you binance.com ;)
+		foreach ( self::get_stop_words() as $stop_word ) {
+			if ( str_contains( $domain, $stop_word ) ) {
+				return true;
+			}
+		}
+
 		$blacklist = apply_filters( 'wp_simple_anti_spam/url_blacklist', array( 'bit.ly', 'bitly', 'rb.gy', 'tinyurl.com' ) );
 
 		foreach ( $blacklist as $item ) {

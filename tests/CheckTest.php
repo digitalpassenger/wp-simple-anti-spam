@@ -231,6 +231,18 @@ describe(
 		);
 
 		it(
+			'flags urls with stop words in the domain host',
+			function ( string $url ) {
+				expect( Check::url( $url ) )->toBeTrue();
+			}
+		)->with(
+			array(
+				'https://binance.com',
+				'https://www.binance.com/signup',
+			)
+		);
+
+		it(
 			'allows clean urls',
 			function () {
 				expect( Check::url( '' ) )->toBeFalse();
