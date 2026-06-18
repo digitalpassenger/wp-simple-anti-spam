@@ -97,6 +97,10 @@ class GravityForms {
 			return true;
 		}
 
+		if ( 'email' === $type && $check->email( $string_value ) ) {
+			return true;
+		}
+
 		// If name consists of only digits.
 		if ( 'name' === $type && $check->is_only_digits( $string_value ) ) {
 			return true;
