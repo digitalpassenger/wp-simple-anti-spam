@@ -201,7 +201,7 @@ class Check {
 			}
 		}
 
-		$blacklist = apply_filters( 'wp_simple_anti_spam/url_blacklist', array( 'bit.ly', 'bitly', 'rb.gy', 'tinyurl.com' ) );
+		$blacklist = apply_filters( 'wp_simple_anti_spam/url_blacklist', array( 'bit.ly', 'bitly', 'rb.gy', 'tinyurl.com', 'mmk365app.com' ) );
 
 		foreach ( $blacklist as $item ) {
 			if ( str_contains( $url, $item ) ) {
