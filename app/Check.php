@@ -219,6 +219,13 @@ class Check {
 	 */
 	public static function text( string $content ): bool {
 
+		// If text is just one word, then it's probably spam.
+		$content = trim( strip_tags( $content ) );
+
+		if ( '' !== $content && 1 === preg_match( '/^\S+$/u', $content ) ) {
+			return true;
+		}
+
 		// If comment contains a russian character.
 		// 'lang_needed' => '\p{Latin}',
 		// 'lang_forbidden' => '\p{Han}\p{Arabic}\p{Cyrillic}'.

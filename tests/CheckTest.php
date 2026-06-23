@@ -285,6 +285,20 @@ describe(
 	'Check::text',
 	function () {
 		it(
+			'flags one-word content',
+			function () {
+				expect( Check::text( 'Awesome' ) )->toBeTrue();
+			}
+		);
+
+		it(
+			'does not flag multi-word content by this rule alone',
+			function () {
+				expect( Check::text( 'Awesome article' ) )->toBeFalse();
+			}
+		);
+
+		it(
 			'flags russian characters when enabled',
 			function () {
 				expect( Check::text( 'Привет н world' ) )->toBeTrue();
