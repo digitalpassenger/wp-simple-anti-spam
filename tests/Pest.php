@@ -57,6 +57,13 @@ if ( ! function_exists( 'wp_parse_url' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wp_extract_urls' ) ) {
+	function wp_extract_urls( $content ) {
+		preg_match_all( '#https?://[^\s<>"\']+#i', (string) $content, $matches );
+		return array_values( array_unique( $matches[0] ?? array() ) );
+	}
+}
+
 if ( ! function_exists( 'ray' ) ) {
 	function ray( ...$args ) {
 		return null;

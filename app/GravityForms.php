@@ -13,6 +13,13 @@ namespace WPSimpleAntiSpam;
 class GravityForms {
 
 	/**
+	 * Website field URLs for current entry.
+	 *
+	 * @var array<int, string>
+	 */
+	private array $urls = array();
+
+	/**
 	 * Register Gravity Forms spam hooks when available.
 	 */
 	public function __construct() {
@@ -36,6 +43,8 @@ class GravityForms {
 		if ( $is_spam ) {
 			return $is_spam;
 		}
+
+		$this->urls = $this->extract_urls( $form, $entry );
 
 		$field_types_to_check = array(
 			'hidden',
@@ -86,11 +95,15 @@ class GravityForms {
 			return false;
 		}
 
-		// Single Line Text and Paragraph fields.
+		// Single Line Text, Paragraph and hidden fields.
 		if ( 'text' === $type || 'textarea' === $type || 'hidden' === $type ) {
 			if ( $check->text( $string_value ) ) {
 				return true;
 			}
+		}
+
+		if ( 'textarea' === $type && $this->textarea_contains_identical_url( $string_value ) ) {
+			return true;
 		}
 
 		if ( 'website' === $type && $check->url( $string_value ) ) {
@@ -120,5 +133,55 @@ class GravityForms {
 		}
 
 		return trim( (string) $value );
+	}
+
+	/**
+	 * Extract website field URLs from current entry.
+	 *
+	 * @param array $form  Form object.
+	 * @param array $entry Entry data.
+	 * @return array<int, string>
+	 */
+	private function extract_urls( array $form, array $entry ): array {
+		$urls = array();
+
+		if ( empty( $form['fields'] ) || ! is_array( $form['fields'] ) ) {
+			return $urls;
+		}
+
+		foreach ( $form['fields'] as $field ) {
+			if ( $field->is_administrative() || 'website' !== $field->get_input_type() ) {
+				continue;
+			}
+
+			$url = $this->value_to_string( $field->get_value_export( $entry ) );
+
+			if ( '' === $url ) {
+				continue;
+			}
+
+			$urls[] = $url;
+		}
+
+		return array_values( array_unique( $urls ) );
+	}
+
+	/**
+	 * Check whether stored website URL appears in textarea content.
+	 *
+	 * @param string $text Textarea content.
+	 */
+	private function textarea_contains_identical_url( string $text ): bool {
+		if ( empty( $this->urls ) ) {
+			return false;
+		}
+
+		foreach ( $this->urls as $url ) {
+			if ( Check::url_is_present_in_text( $url, $text ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

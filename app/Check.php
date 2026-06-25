@@ -134,6 +134,7 @@ class Check {
 	 * @param string $pattern Blacklist pattern.
 	 */
 	private static function email_matches_pattern( string $email, string $pattern ): bool {
+
 		// Regex pattern: /.../ or /.../i.
 		if ( str_starts_with( $pattern, '/' ) && strrpos( $pattern, '/', 1 ) !== false ) {
 			return (bool) preg_match( $pattern, $email );
@@ -210,6 +211,30 @@ class Check {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Check whether a URL appears in the comment text. But check is precise.
+	 * So https://jaimemartinez.nl is a hit, but https://jaimemartinez.nl/about should not be a hit.
+	 *
+	 * @param string $url  URL to look for.
+	 * @param string $text Text to search in.
+	 * @return bool
+	 */
+	public static function url_is_present_in_text( string $url, string $text ): bool {
+		$url = trim( $url );
+
+		if ( '' === $url || '' === trim( $text ) ) {
+			return false;
+		}
+
+		$urls_in_text = wp_extract_urls( $text );
+
+		if ( empty( $urls_in_text ) ) {
+			return false;
+		}
+
+		return in_array( $url, $urls_in_text, true );
 	}
 
 	/**

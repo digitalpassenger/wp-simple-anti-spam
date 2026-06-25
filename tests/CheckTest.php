@@ -254,6 +254,32 @@ describe(
 );
 
 describe(
+	'Check::url_is_present_in_text',
+	function () {
+		it(
+			'returns true when exact url appears in text',
+			function () {
+				expect( Check::url_is_present_in_text( 'https://jaimemartinez.nl', 'Visit https://jaimemartinez.nl for details.' ) )->toBeTrue();
+			}
+		);
+
+		it(
+			'returns false when only path variant appears in text',
+			function () {
+				expect( Check::url_is_present_in_text( 'https://jaimemartinez.nl', 'Visit https://jaimemartinez.nl/about for details.' ) )->toBeFalse();
+			}
+		);
+
+		it(
+			'returns false when url is missing',
+			function () {
+				expect( Check::url_is_present_in_text( 'https://jaimemartinez.nl', 'Thanks for this helpful article.' ) )->toBeFalse();
+			}
+		);
+	}
+);
+
+describe(
 	'Check::str_contains',
 	function () {
 		it(
