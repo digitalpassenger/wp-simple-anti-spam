@@ -251,15 +251,20 @@ class Check {
 			return false;
 		}
 
-		// If comment contains a russian character.
-		// 'lang_needed' => '\p{Latin}',
-		// 'lang_forbidden' => '\p{Han}\p{Arabic}\p{Cyrillic}'.
-		if ( apply_filters( 'wp_simple_anti_spam/russian_character_check_enabled', true ) && mb_strpos( $content, 'н' ) !== false ) {
+		// If text is just one word, then it's probably spam.
+		if ( 1 === preg_match( '/^\S+$/u', $clean_content ) ) {
 			return true;
 		}
 
 		// If content consists of only digits.
 		if ( self::is_only_digits( $content ) ) {
+			return true;
+		}
+
+		// If comment contains a russian character.
+		// 'lang_needed' => '\p{Latin}',
+		// 'lang_forbidden' => '\p{Han}\p{Arabic}\p{Cyrillic}'.
+		if ( apply_filters( 'wp_simple_anti_spam/russian_character_check_enabled', true ) && mb_strpos( $content, 'н' ) !== false ) {
 			return true;
 		}
 
