@@ -64,9 +64,19 @@ if ( ! function_exists( 'wp_extract_urls' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wp_strip_all_tags' ) ) {
+	function wp_strip_all_tags( $text ) {
+		return strip_tags( (string) $text );
+	}
+}
+
 if ( ! function_exists( 'ray' ) ) {
 	function ray( ...$args ) {
-		return null;
+		return new class() {
+			public function __call( string $name, array $arguments ): self {
+				return $this;
+			}
+		};
 	}
 }
 

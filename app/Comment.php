@@ -75,7 +75,7 @@ class Comment {
 			// If email looks like "xyz@yahoo.com" and author url contains an URL, probably spam.
 			|| $check->email_and_author_url( $commentdata['comment_author_email'], $commentdata['comment_author_url'] )
 
-			// If URL is given check
+			// If URL is given, check.
 			|| $check->url( $commentdata['comment_author_url'] )
 
 			// Comment content checks (russian char, no space, digits only, buy+link, greeting pattern).

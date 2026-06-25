@@ -245,10 +245,10 @@ class Check {
 	public static function text( string $content ): bool {
 
 		// If text is just one word, then it's probably spam.
-		$content = trim( strip_tags( $content ) );
+		$clean_content = trim( wp_strip_all_tags( $content ) );
 
-		if ( '' !== $content && 1 === preg_match( '/^\S+$/u', $content ) ) {
-			return true;
+		if ( '' === $clean_content ) {
+			return false;
 		}
 
 		// If comment contains a russian character.
