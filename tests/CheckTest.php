@@ -192,6 +192,13 @@ describe(
 		);
 
 		it(
+			'flags emails with a digit-only local part',
+			function () {
+				expect( Check::email( '57370088@outlook.com' ) )->toBeTrue();
+			}
+		);
+
+		it(
 			'flags name-pattern emails',
 			function () {
 				expect( Check::email( 'john_doe@gmail.com' ) )->toBeTrue();

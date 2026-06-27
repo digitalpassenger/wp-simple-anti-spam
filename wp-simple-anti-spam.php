@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Simple Anti Spam
  * Description: No config, no big complicated 3rd party spam check. Just simple local, maybe not 100% (but enough) anti-spam solution :)
- * Version: 1.2.0
+ * Version: 1.2.1
  * Plugin URI: https://jaimemartinez.nl/open-source/simple-anti-spam
  * Author: Jaime Martinez
  * Author URI: https://jaimemartinez.nl

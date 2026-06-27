@@ -3,7 +3,7 @@
     "description": "WordPress anti-spam plugin",
     "type": "wordpress-plugin",
     "license": "GPL-3.0",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "authors": [
         {
             "name": "Jaime Martinez",

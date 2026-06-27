@@ -63,6 +63,9 @@ Used for comment author URLs and Gravity Forms website fields.
 - Hostname is digits only
 - Hostname contains a [stop word](#stop-words)
 - URL contains a blacklisted shortener: `bit.ly`, `bitly`, `rb.gy`, `tinyurl.com`
+- URL matching inside text (`Check::url_is_present_in_text`) is exact per extracted URL token:
+  - `https://jaimemartinez.nl` matches `https://jaimemartinez.nl`
+  - `https://jaimemartinez.nl` does **not** match `https://jaimemartinez.nl/about`
 
 Filter: `wp_simple_anti_spam/url_blacklist`
 

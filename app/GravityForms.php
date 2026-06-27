@@ -168,6 +168,7 @@ class GravityForms {
 
 	/**
 	 * Check whether stored website URL appears in textarea content.
+	 * Because most of the time when a spammer wants to link to spam, add the url in 1. the website field and also in the textarea. 
 	 *
 	 * @param string $text Textarea content.
 	 */
